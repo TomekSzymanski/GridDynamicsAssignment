@@ -7,8 +7,8 @@ class BitwiseEncoder(val maxAttributes: Int = MaxAttribs) {
 
   private val wordsNeeded: Int = Math.ceil(maxAttributes.toDouble / wordLength).toInt
 
-  def encode(paramIdx: Int*): Array[Long] = {
-    ensureAllIdexesValid(paramIdx:_*)
+  def encode(paramIdx: Seq[Int]): Array[Long] = {
+    ensureAllIdexesValid(paramIdx)
     val codingWords = initializeEmpty
     paramIdx.foreach(idx => {
       val wordIndex = idx / wordLength
@@ -18,9 +18,9 @@ class BitwiseEncoder(val maxAttributes: Int = MaxAttribs) {
     codingWords
   }
 
-  def forAllAttributes(input: Array[Long], paramIdx: Int*): Boolean = {
-    ensureAllIdexesValid(paramIdx:_*)
-    val expected = encode(paramIdx:_*)
+  def forAllAttributes(input: Array[Long], paramIdx: Seq[Int]): Boolean = {
+    ensureAllIdexesValid(paramIdx)
+    val expected = encode(paramIdx)
     for(i <- 0 until input.length) {
       if ((input(i) & expected(i)) != expected(i)) {
         return false
@@ -29,12 +29,12 @@ class BitwiseEncoder(val maxAttributes: Int = MaxAttribs) {
     true
   }
 
-  private def ensureAllIdexesValid(paramIdx: Int*): Unit = {
+  private def ensureAllIdexesValid(paramIdx: Seq[Int]): Unit = {
     require(paramIdx.nonEmpty)
-    require(allIndexesWithinCapacity(paramIdx:_*))
+    require(allIndexesWithinCapacity(paramIdx))
   }
 
-  private def allIndexesWithinCapacity(paramIdx: Int*): Boolean = {
+  private def allIndexesWithinCapacity(paramIdx: Seq[Int]): Boolean = {
     paramIdx.forall(_ < maxAttributes)
   }
 
