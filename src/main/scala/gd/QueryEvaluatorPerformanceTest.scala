@@ -10,7 +10,7 @@ class QueryEvaluatorPerformanceTest {
 
   @Benchmark
   def test(state: BenchmarkState, bh: Blackhole): Unit = {
-    val results = state.evaluator.findAllAttributesMatch(Seq(Attributes.MALE, Attributes.SINGLE))
+    val results = state.evaluator.findAllAttributesMatch(Seq(Attributes.MALE, Attributes.SINGLE), Seq(Attributes.SINGLE))
     bh.consume(results)
   }
 }
