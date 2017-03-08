@@ -2,7 +2,7 @@ package gd
 
 import scala.collection.mutable
 
-class QueryEvaluator(private val input: Iterator[Person], private val encoder: BitwiseEncoder) { //TODO iterator will be exhausted for next query
+class QueryEvaluator(private val input: Seq[Person], private val encoder: BitwiseEncoder) { //TODO iterator will be exhausted for next query
 
   def findAllAttributesMatch(filterAttributes: Seq[Attributes]): Seq[Long] = {
     findAllMatching(filterAttributes).map(_.id)
