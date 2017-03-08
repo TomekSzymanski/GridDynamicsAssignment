@@ -12,6 +12,5 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.13.4" % "test"
 )
 
-lazy val root = (project in file(".")).
-  enablePlugins(JmhPlugin)
+enablePlugins(JmhPlugin)
     

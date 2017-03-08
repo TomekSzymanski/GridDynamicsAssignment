@@ -19,7 +19,6 @@ class BitwiseEncoder(val maxAttributes: Int = MaxAttribs) {
   }
 
   def forAllAttributes(input: Array[Long], paramIdx: Seq[Int]): Boolean = {
-    ensureAllIdexesValid(paramIdx)
     val expected = encode(paramIdx)
     for(i <- input.indices) {
       if ((input(i) & expected(i)) != expected(i)) {
