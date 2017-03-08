@@ -5,7 +5,7 @@ import org.openjdk.jmh.annotations._
 import org.openjdk.jmh.infra.Blackhole
 
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@BenchmarkMode(Array(Mode.AverageTime, Mode.SampleTime))
+@BenchmarkMode(Array(Mode.AverageTime))
 class QueryEvaluatorPerformanceTest {
 
   @Benchmark
