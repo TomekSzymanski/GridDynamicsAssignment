@@ -7,23 +7,23 @@ class QueryEvaluatorTest extends UnitSpec {
   it should "return overall sum" in {
     Given("")
     val twoElementsInput = Seq(
-      new Person(1, encoder.encode(Seq(Attributes.MALE.ordinal()))),
-      new Person(2, encoder.encode(Seq(Attributes.FEMALE.ordinal())))
+      new Person(1, encoder.encode(Array(Attributes.MALE.ordinal()))),
+      new Person(2, encoder.encode(Array(Attributes.FEMALE.ordinal())))
     )
     val evaluator = new QueryEvaluator(twoElementsInput, encoder)
 
     When("")
-    val peopleFoundIds = evaluator.findAllAttributesMatch(Seq(Attributes.MALE))
+    val peopleFoundIds = evaluator.findAllAttributesMatch(Array(Attributes.MALE))
     peopleFoundIds should contain only (1)
   }
 
   it should "return empty group by result when no input records passed filtering" in {
     Given("")
-    val twoElementsInput = Seq(new Person(1, encoder.encode(Seq(Attributes.FEMALE.ordinal()))))
+    val twoElementsInput = Seq(new Person(1, encoder.encode(Array(Attributes.FEMALE.ordinal()))))
     val evaluator = new QueryEvaluator(twoElementsInput, encoder)
 
     When("")
-    val countGroupBy = evaluator.findAllAttributesMatch(Seq(Attributes.MALE), Seq(Attributes.ATTR_0, Attributes.ATTR_1))
+    val countGroupBy = evaluator.findAllAttributesMatch(Array(Attributes.MALE), Array(Attributes.ATTR_0, Attributes.ATTR_1))
 
     Then("")
     countGroupBy.overallCount shouldBe 0
@@ -33,11 +33,11 @@ class QueryEvaluatorTest extends UnitSpec {
 
   it should "return empty group by attribute counts when no grouping attribute was set in any input record" in {
     Given("")
-    val twoElementsInput = Seq(new Person(1, encoder.encode(Seq(Attributes.MALE.ordinal()))))
+    val twoElementsInput = Seq(new Person(1, encoder.encode(Array(Attributes.MALE.ordinal()))))
     val evaluator = new QueryEvaluator(twoElementsInput, encoder)
 
     When("")
-    val countGroupBy = evaluator.findAllAttributesMatch(filterAttributes = Seq(Attributes.MALE), groupByAttributes = Seq(Attributes.ATTR_0, Attributes.ATTR_1))
+    val countGroupBy = evaluator.findAllAttributesMatch(filterAttributes = Array(Attributes.MALE), groupByAttributes = Array(Attributes.ATTR_0, Attributes.ATTR_1))
 
     Then("")
     countGroupBy.overallCount shouldBe 1
@@ -48,13 +48,13 @@ class QueryEvaluatorTest extends UnitSpec {
   it should "return empty no group attributes count when all input records set at least one grouping attribute set" in {
     Given("")
     val twoElementsInput = Seq(
-      new Person(1, encoder.encode(Seq(Attributes.MALE.ordinal(), Attributes.ATTR_0.ordinal()))),
-      new Person(2, encoder.encode(Seq(Attributes.MALE.ordinal(), Attributes.ATTR_1.ordinal())))
+      new Person(1, encoder.encode(Array(Attributes.MALE.ordinal(), Attributes.ATTR_0.ordinal()))),
+      new Person(2, encoder.encode(Array(Attributes.MALE.ordinal(), Attributes.ATTR_1.ordinal())))
     )
     val evaluator = new QueryEvaluator(twoElementsInput, encoder)
 
     When("")
-    val countGroupBy = evaluator.findAllAttributesMatch(filterAttributes = Seq(Attributes.MALE), groupByAttributes = Seq(Attributes.ATTR_0, Attributes.ATTR_1))
+    val countGroupBy = evaluator.findAllAttributesMatch(filterAttributes = Array(Attributes.MALE), groupByAttributes = Array(Attributes.ATTR_0, Attributes.ATTR_1))
 
     Then("")
     countGroupBy.overallCount shouldBe 2
@@ -68,17 +68,17 @@ class QueryEvaluatorTest extends UnitSpec {
   it should "return separate sums for all group by attributes" in {
     Given("")
     val twoElementsInput = Seq(
-      new Person(1, encoder.encode(Seq(Attributes.MALE.ordinal(), Attributes.ATTR_0.ordinal(), Attributes.ATTR_1.ordinal()))),
-      new Person(2, encoder.encode(Seq(Attributes.MALE.ordinal(), Attributes.ATTR_0.ordinal()))),
-      new Person(3, encoder.encode(Seq(Attributes.MALE.ordinal(), Attributes.ATTR_1.ordinal()))),
-      new Person(4, encoder.encode(Seq(Attributes.MALE.ordinal()))),
+      new Person(1, encoder.encode(Array(Attributes.MALE.ordinal(), Attributes.ATTR_0.ordinal(), Attributes.ATTR_1.ordinal()))),
+      new Person(2, encoder.encode(Array(Attributes.MALE.ordinal(), Attributes.ATTR_0.ordinal()))),
+      new Person(3, encoder.encode(Array(Attributes.MALE.ordinal(), Attributes.ATTR_1.ordinal()))),
+      new Person(4, encoder.encode(Array(Attributes.MALE.ordinal()))),
 
-      new Person(5, encoder.encode(Seq(Attributes.FEMALE.ordinal())))
+      new Person(5, encoder.encode(Array(Attributes.FEMALE.ordinal())))
     )
     val evaluator = new QueryEvaluator(twoElementsInput, encoder)
 
     When("")
-    val countGroupBy = evaluator.findAllAttributesMatch(Seq(Attributes.MALE), Seq(Attributes.ATTR_0, Attributes.ATTR_1))
+    val countGroupBy = evaluator.findAllAttributesMatch(Array(Attributes.MALE), Array(Attributes.ATTR_0, Attributes.ATTR_1))
 
     Then("")
     countGroupBy.overallCount shouldBe 4

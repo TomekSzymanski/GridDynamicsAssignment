@@ -17,10 +17,13 @@ class QueryEvaluatorPerformanceTest {
 
 @State(Scope.Thread)
 class BenchmarkState {
+
+  val InputTaskSize = 1000000
+
   private val encoder = new BitwiseEncoder
   private val testPersonBuilder = new TestPersonBuilder(encoder)
   def evaluator = {
-    val input = 1 to 1000000 map testPersonBuilder.buildSamplePerson
+    val input = 1 to InputTaskSize map testPersonBuilder.buildSamplePerson
     new QueryEvaluator(input, encoder)
   }
 }

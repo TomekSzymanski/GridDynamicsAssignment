@@ -21,7 +21,7 @@ class QueryEvaluator(private val input: Seq[Person], private val encoder: Bitwis
       overallCount.incrementAndGet()
       var anyGrpAttrMatched = false
       groupByAttributes.foreach(grpAttr => {
-        if (encoder.forAllAttributes(p.attributes, Seq(grpAttr.ordinal()))) {
+        if (encoder.forAllAttributes(p.attributes, Array(grpAttr.ordinal()))) {
           anyGrpAttrMatched = true
           groupCounts.put(grpAttr, groupCounts.getOrDefault(grpAttr, 0L) + 1)
         }
@@ -34,7 +34,7 @@ class QueryEvaluator(private val input: Seq[Person], private val encoder: Bitwis
   }
 
   private def findAllMatching(filterAttributes: Seq[Attributes]): ParSeq[Person] = {
-    val attribIndexes = filterAttributes.map(_.ordinal)
+    val attribIndexes = filterAttributes.map(_.ordinal).toArray
     input.par.filter(p => {
       encoder.forAllAttributes(p.attributes, attribIndexes)
     })

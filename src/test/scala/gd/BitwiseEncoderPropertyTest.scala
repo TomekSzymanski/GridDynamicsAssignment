@@ -19,8 +19,8 @@ class BitwiseEncoderPropertyTest extends FlatSpec with Matchers with GivenWhenTh
     When("Encode that list")
     Then("all attributes from original list must be contained")
     forAll(attribIndexesGen) {(indexes: Seq[Int]) =>
-      val encoded = encoder.encode(indexes)
-      encoder.forAllAttributes(encoded, indexes) shouldBe true
+      val encoded = encoder.encode(indexes.toArray)
+      encoder.forAllAttributes(encoded, indexes.toArray) shouldBe true
     }
   }
 

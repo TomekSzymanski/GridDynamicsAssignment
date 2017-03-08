@@ -7,8 +7,8 @@ class BitwiseEncoder(val maxAttributes: Int = MaxAttribs) {
 
   private val wordsNeeded: Int = Math.ceil(maxAttributes.toDouble / wordLength).toInt
 
-  def encode(paramIdx: Seq[Int]): Array[Long] = {
-    ensureAllIdexesValid(paramIdx)
+  def encode(paramIdx: Array[Int]): Array[Long] = {
+    //ensureAllIdexesValid(paramIdx)
     val codingWords = initializeEmpty
     paramIdx.foreach(idx => {
       val wordIndex = idx / wordLength
@@ -18,7 +18,7 @@ class BitwiseEncoder(val maxAttributes: Int = MaxAttribs) {
     codingWords
   }
 
-  def forAllAttributes(input: Array[Long], paramIdx: Seq[Int]): Boolean = {
+  def forAllAttributes(input: Array[Long], paramIdx: Array[Int]): Boolean = {
     val expected = encode(paramIdx)
     for(i <- input.indices) {
       if ((input(i) & expected(i)) != expected(i)) {
