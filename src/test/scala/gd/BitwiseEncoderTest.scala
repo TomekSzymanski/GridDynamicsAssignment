@@ -3,17 +3,65 @@ package gd
 class BitwiseEncoderTest extends UnitSpec {
 
   it should "be reversible" in {
-    val encoded = BitwiseEncoder.encode(8)
-    BitwiseEncoder.isTrue(encoded, 8) shouldBe true
+    Given("")
+    val encoder = new BitwiseEncoder
+    val encoded = encoder.encode(8)
+
+    When("")
+    Then("")
+    encoder.forAllAttributes(encoded, 8) shouldBe true
   }
 
-  it should "be reversible for multiple attrs set" in {
-    val encoded = BitwiseEncoder.encode(0, 4, 10)
-    BitwiseEncoder.isTrue(encoded, 0, 4, 10) shouldBe true
+  it should "handle attribute index 0" in {
+    Given("")
+    val encoder = new BitwiseEncoder
+    val encoded = encoder.encode(0)
 
-    BitwiseEncoder.isTrue(encoded, 0, 4) shouldBe false
-    BitwiseEncoder.isTrue(encoded, 0, 10) shouldBe false
-    BitwiseEncoder.isTrue(encoded, 0, 4, 11) shouldBe false
+    When("")
+    Then("")
+    encoder.forAllAttributes(encoded, 0) shouldBe true
+    encoder.forAllAttributes(encoded, 1) shouldBe false
   }
 
+  it should "be reversible for multiple attrs set indexes lower than one machine word size" in {
+    Given("")
+    val encoder = new BitwiseEncoder
+    val encoded = encoder.encode(0, 4, 10)
+
+    When("")
+    Then("")
+    encoder.forAllAttributes(encoded, 0, 4, 10) shouldBe true
+
+    encoder.forAllAttributes(encoded, 0, 4) shouldBe true
+    encoder.forAllAttributes(encoded, 0, 10) shouldBe true
+    encoder.forAllAttributes(encoded, 0, 4, 11) shouldBe false
+  }
+
+  it should "be reversible for multiple attrs with any indexes" in {
+    Given("")
+    val encoder = new BitwiseEncoder
+    val encoded = encoder.encode(0, 4, 10, 200, 400)
+
+    When("")
+    Then("")
+    encoder.forAllAttributes(encoded, 0, 4, 10, 200, 400) shouldBe true
+  }
+
+  it should "words for max attributes less than one machine word" in {
+    Given("")
+    val encoder = new BitwiseEncoder(maxAttributes = 10)
+    val encoded = encoder.encode(0, 4)
+
+    When("")
+    Then("")
+    encoder.forAllAttributes(encoded, 0, 4) shouldBe true
+  }
+
+  it should "not accept attribute indexes greater than max capacity" in {
+    Given("")
+    val encoder = new BitwiseEncoder(100)
+    assertThrows[IllegalArgumentException] {
+      encoder.encode(100)
+    }
+  }
 }

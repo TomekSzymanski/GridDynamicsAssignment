@@ -2,25 +2,36 @@ package gd
 
 import scala.util.Random
 
-class InputIterator(numRecords: Int) extends Iterator[Person] {
-
-  private[this] var cnt = 0
+class InputIterator(numRecords: Int, private val encoder: BitwiseEncoder) extends Iterator[Person] {
 
   private[this] val rnd = new Random()
 
+  private[this] val values = {
+    ProfilingHelper.time("test data generation") {
+      1 to numRecords map buildSamplePerson
+    }
+  }.iterator
+
+  private def buildRandomPerson(personId: Int): Person = {
+    // this takes time, in the loop. For 1M records 8.5 second
+    val numAttrsToSet = 1 + rnd.nextInt(encoder.maxAttributes)
+    val attributeIndexes = 0 until numAttrsToSet map {dummy => rnd.nextInt(encoder.maxAttributes)}
+    val attribs = encoder.encode(attributeIndexes:_*)
+    new Person(personId, attribs)
+  }
+
+  private def buildSamplePerson(personId: Int): Person = {
+    val randomAttr1 = rnd.nextInt(10)
+    val randomAttr2 = rnd.nextInt(10)
+    new Person(personId, encoder.encode(randomAttr1, randomAttr2, 100, 200, 400))
+  }
+
   override def hasNext: Boolean = {
-    val result = cnt < numRecords
-    cnt = cnt + 1
-    result
+    values.hasNext
   }
 
   override def next(): Person = {
-    assume(cnt <= numRecords)
-
-    val numPossibleAttribs = Attributes.values.length
-    val numAttrsToSet = rnd.nextInt(numPossibleAttribs)
-    val attribs = BitwiseEncoder.encode(0 until numAttrsToSet:_*)
-
-    new Person(cnt, attribs)
+    values.next()
   }
+
 }

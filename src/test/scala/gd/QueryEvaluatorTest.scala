@@ -3,25 +3,20 @@ package gd
 
 class QueryEvaluatorTest extends UnitSpec {
 
+  private val encoder = new BitwiseEncoder
+
   it should "run benchmark 1" in {
     Given("")
-    val input = new InputIterator(1000000)
-    val evaluator = new QueryEvaluator(input)
+    val input = new InputIterator(1000000, encoder)
+    val evaluator = new QueryEvaluator(input, encoder)
     var numFound = 0
 
-    time {
-      val results = evaluator.findAllAttributesMatch(Attributes.MALE)
+    ProfilingHelper.time("evaluation") {
+      val results = evaluator.findAllAttributesMatch(Attributes.MALE, Attributes.SINGLE)
       numFound = results.size
     }
 
     println(numFound)
-  }
-
-  def time[R](block: => R): R = {
-    val startTime = System.nanoTime()
-    val result = block
-    println("Elapsed time: " + (System.nanoTime - startTime) / 1000000 + " ms")
-    result
   }
 
 }
