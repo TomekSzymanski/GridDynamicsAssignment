@@ -34,7 +34,7 @@ class QueryEvaluatorTest extends UnitSpec {
     Then("")
     countGroupBy.overallCount shouldBe 0
     countGroupBy.noGrpAttrsCount shouldBe 0
-    countGroupBy.perAttributeCounts shouldBe 'empty
+    countGroupBy.perAttributeCounts.isEmpty shouldBe true
   }
 
   it should "return empty group by attribute counts when no grouping attribute was set in any input record" in {
@@ -48,7 +48,7 @@ class QueryEvaluatorTest extends UnitSpec {
     Then("")
     countGroupBy.overallCount shouldBe 1
     countGroupBy.noGrpAttrsCount shouldBe 1
-    countGroupBy.perAttributeCounts shouldBe 'empty
+    countGroupBy.perAttributeCounts.isEmpty shouldBe true
   }
 
   it should "return empty no group attributes count when all input records set at least one grouping attribute set" in {
@@ -89,7 +89,7 @@ class QueryEvaluatorTest extends UnitSpec {
     Then("")
     countGroupBy.overallCount shouldBe 4
     countGroupBy.noGrpAttrsCount shouldBe 1
-    countGroupBy.perAttributeCounts.asScala shouldEqual Map(
+    countGroupBy.perAttributeCounts.asScala shouldEqual Map( //
       Attributes.ATTR_0 -> 2,
       Attributes.ATTR_1 -> 2
     )

@@ -1,9 +1,10 @@
 package gd;
 
+import com.google.common.util.concurrent.AtomicLongMap;
+
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,26 +27,25 @@ public class QueryEvaluator {
         if (groupByAttributes.isEmpty()) {
             throw new IllegalArgumentException("groupByAttributes list must be non empty");
         }
-        Map<Attributes, Long> groupCounts = new ConcurrentHashMap<>(groupByAttributes.size());
+        AtomicLongMap<Attributes> groupCounts = AtomicLongMap.create();
         AtomicLong overallCount = new AtomicLong();
         AtomicLong noGrpAttrsCount = new AtomicLong();
         Stream<Person> allMatching = findAllMatching(filterAttributes);
-        boolean[] anyGrpAttrMatched = {false};
         Map<Attributes, long[]> encodedAttributes = createEncodedAttributes(groupByAttributes);
         allMatching.forEach(person -> {
             overallCount.incrementAndGet();
-            anyGrpAttrMatched[0] = false;
+            boolean[] anyGrpAttrMatched = {false};
             groupByAttributes.forEach(attr -> {
                 if (personContainsAttribute(attr, person, encodedAttributes)) {
                     anyGrpAttrMatched[0] = true;
-                    groupCounts.put(attr, groupCounts.getOrDefault(attr, 0L) + 1);
+                    groupCounts.incrementAndGet(attr);
                 }
             });
             if (!anyGrpAttrMatched[0]) {
                 noGrpAttrsCount.incrementAndGet();
             }
         });
-        return new GroupByRollupResult(overallCount.longValue(), noGrpAttrsCount.longValue(), groupCounts);
+        return new GroupByRollupResult(overallCount.longValue(), noGrpAttrsCount.longValue(), groupCounts.asMap());
     }
 
     private Map<Attributes, long[]> createEncodedAttributes(List<Attributes> attributes) {
