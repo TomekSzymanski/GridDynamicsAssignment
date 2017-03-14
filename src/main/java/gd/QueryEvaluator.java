@@ -26,7 +26,7 @@ public class QueryEvaluator {
         if (groupByAttributes.isEmpty()) {
             throw new IllegalArgumentException("groupByAttributes list must be non empty");
         }
-        Map<Attributes, Long> groupCounts = new ConcurrentHashMap<>();
+        Map<Attributes, Long> groupCounts = new ConcurrentHashMap<>(groupByAttributes.size());
         AtomicLong overallCount = new AtomicLong();
         AtomicLong noGrpAttrsCount = new AtomicLong();
         Stream<Person> allMatching = findAllMatching(filterAttributes);
