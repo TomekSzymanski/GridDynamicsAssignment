@@ -6,7 +6,7 @@ public class BitwiseEncoder {
 
     private static final int WORD_LENGTH = 64;
 
-    public final int maxAttributes;
+    private final int maxAttributes;
 
     private final int wordsNeeded;
 

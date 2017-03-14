@@ -1,10 +1,12 @@
+# Assumptions
+The goal is to build the system which will run the queries of specified type (filter by some attributes and count group by (other) attributes) on possibly large input data sets within 1 second.
+It was assumed that loading of input data itself (people and their attributes) is not counted in performance target, as the input data may be loaded up front and only once and kept in operating memory for running the queries.
+
+So loading of input data (in this case generation of test data) is NOT included in performance measurements (see @State classes in QueryEvaluatorPerformanceTest).
+
 # Running performance benchmarks
 $sbt
-> jmh:run -i 10 -wi 10 -f1 -t1
+> jmh:run -i 5 -wi 5 -f1 -t1 -jvmArgs="-Xmx10g"
+Increasing heap size is necessary for input task sizes over 10 millions
 
-To test for other sizes of input task change in QueryEvaluatorPerformanceTest.scala: BenchmarkState.InputTaskSize
-
-Possible optimisations:
-1. Throw away Scala, only pure Java
-2. In interfaces pass Java arrays of primitives (int, long). To safe on auto boxing and collection structures. Currently profiler shows 40% CPU spent in boxing integers!!
-3. Try out more primitive collections (fastutils, GoldmanSachs etc.)
+# Further possible optimisations

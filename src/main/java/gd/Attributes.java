@@ -1,7 +1,7 @@
 package gd;
 
 public enum Attributes {
-    MALE, FEMALE, SINGLE, MARRIED, TALL, SHORT, FAT, THIN,
+    MALE, FEMALE, SINGLE, MARRIED, DIVORCED, TALL, SHORT, FAT, THIN,
     ATTR_0,
     ATTR_1,
     ATTR_2,
