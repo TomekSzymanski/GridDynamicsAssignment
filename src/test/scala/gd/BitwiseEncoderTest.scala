@@ -49,7 +49,7 @@ class BitwiseEncoderTest extends UnitSpec {
 
   it should "words for max attributes less than one machine word" in {
     Given("")
-    val encoder = new BitwiseEncoder(maxAttributes = 10)
+    val encoder = new BitwiseEncoder(10)
     val encoded = encoder.encode(Array(0, 4))
 
     When("")
