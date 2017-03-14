@@ -1,4 +1,7 @@
-package gd;
+package gd.performancetest;
+
+import gd.BitwiseEncoder;
+import gd.Person;
 
 import java.util.Arrays;
 import java.util.Random;

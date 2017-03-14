@@ -1,11 +1,11 @@
-package gd;
+package gd.performancetest;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
+import gd.Attributes;
+import gd.GroupByRollupResult;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
@@ -24,6 +24,7 @@ public class QueryEvaluatorPerformanceTest {
       this.add(Attributes.SINGLE);
     }};
     GroupByRollupResult results = state.evaluator.findAllAttributesMatch(filterAttributes, groupByAttributes);
+//    List<Long> results = state.evaluator.findAllAttributesMatch(filterAttributes);
     bh.consume(results);
   }
 }

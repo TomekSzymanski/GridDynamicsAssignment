@@ -1,6 +1,6 @@
 package gd;
 
-import java.util.Arrays;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,42 +18,55 @@ public class QueryEvaluator {
         this.encoder = encoder;
     }
 
-    List<Long> findAllAttributesMatch(List<Attributes> filterAttributes) {
+    public List<Long> findAllAttributesMatch(List<Attributes> filterAttributes) {
         return findAllMatching(filterAttributes).map(p -> p.id).collect(Collectors.toList());
     }
 
-    GroupByRollupResult findAllAttributesMatch(List<Attributes> filterAttributes, List<Attributes> groupByAttributes) {
+    public GroupByRollupResult findAllAttributesMatch(List<Attributes> filterAttributes, List<Attributes> groupByAttributes) {
         if (groupByAttributes.isEmpty()) {
             throw new IllegalArgumentException("groupByAttributes list must be non empty");
         }
         Map<Attributes, Long> groupCounts = new ConcurrentHashMap<>();
         AtomicLong overallCount = new AtomicLong();
         AtomicLong noGrpAttrsCount = new AtomicLong();
-        findAllMatching(filterAttributes).forEach(p -> {
-                overallCount.incrementAndGet();
-            final boolean[] anyGrpAttrMatched = {false};
-                groupByAttributes.forEach(grpAttr -> {
-                    int[] paramIndexes = new int[1];
-                    Arrays.fill(paramIndexes, grpAttr.ordinal());
-                    if (encoder.forAllAttributes(p.attributes, paramIndexes)) {
-                        anyGrpAttrMatched[0] = true;
-                        groupCounts.put(grpAttr, groupCounts.getOrDefault(grpAttr, 0L) + 1);
-                    }
-                });
-        if (!anyGrpAttrMatched[0]) {
-            noGrpAttrsCount.incrementAndGet();
-        }
+        Stream<Person> allMatching = findAllMatching(filterAttributes);
+        boolean[] anyGrpAttrMatched = {false};
+        Map<Attributes, long[]> encodedAttributes = createEncodedAttributes(groupByAttributes);
+        allMatching.forEach(person -> {
+            overallCount.incrementAndGet();
+            anyGrpAttrMatched[0] = false;
+            groupByAttributes.forEach(attr -> {
+                if (personContainsAttribute(attr, person, encodedAttributes)) {
+                    anyGrpAttrMatched[0] = true;
+                    groupCounts.put(attr, groupCounts.getOrDefault(attr, 0L) + 1);
+                }
+            });
+            if (!anyGrpAttrMatched[0]) {
+                noGrpAttrsCount.incrementAndGet();
+            }
         });
         return new GroupByRollupResult(overallCount.longValue(), noGrpAttrsCount.longValue(), groupCounts);
     }
 
-    private Stream<Person> findAllMatching(List<Attributes> filterAttributes)  {
-        int [] attribIndexes = new int[filterAttributes.size()];
+    private Map<Attributes, long[]> createEncodedAttributes(List<Attributes> attributes) {
+        Map<Attributes, long[]> encodedAttributes = new IdentityHashMap<>(attributes.size());
+        attributes.forEach(attr -> encodedAttributes.put(attr, encoder.encode(attr.ordinal())));
+        return encodedAttributes;
+    }
+
+    private boolean personContainsAttribute(Attributes grpAttr, Person person, Map<Attributes, long[]> encodedAttributes) {
+        long[] encodedParamIndexes = encodedAttributes.get(grpAttr);
+        return (encoder.forAllAttributes(person.attributes, encodedParamIndexes));
+    }
+
+    private Stream<Person> findAllMatching(List<Attributes> filterAttributes) {
+        int[] attribIndexes = new int[filterAttributes.size()];
         int attributeIdx;
         for (int i = 0; i < filterAttributes.size(); i++) {
             attributeIdx = filterAttributes.get(i).ordinal();
             attribIndexes[i] = attributeIdx;
         }
-        return input.parallelStream().filter(p -> encoder.forAllAttributes(p.attributes, attribIndexes));
+        long[] encodedParamIndexes = encoder.encode(attribIndexes);
+        return input.parallelStream().filter(person -> encoder.forAllAttributes(person.attributes, encodedParamIndexes));
     }
 }

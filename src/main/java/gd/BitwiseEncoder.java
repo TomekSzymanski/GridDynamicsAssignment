@@ -1,14 +1,12 @@
 package gd;
 
-import java.util.Arrays;
-
 public class BitwiseEncoder {
 
     public static final int DEFAULT_MAX_ATTRIBUTES = 500;
 
     private static final int WORD_LENGTH = 64;
 
-    final int maxAttributes;
+    public final int maxAttributes;
 
     private final int wordsNeeded;
 
@@ -24,13 +22,18 @@ public class BitwiseEncoder {
         this.wordsNeeded = (int)Math.ceil((double)maxAttributes/WORD_LENGTH);
     }
 
-    public long[] encode(int[] paramIdx) {
-        //ensureAllIndexesValid(paramIdx)
-        long[] codingWords = initializeEmpty();
+
+    public long[] encode(int paramIdx) {
+        return encode(new int[] {paramIdx});
+    }
+
+    public long[] encode(int[] paramIndexes) {
+        //ensureAllIndexesValid(paramIndexes)
+        long[] codingWords = new long[wordsNeeded];
         int idx;
         int wordIndex, indexInWord;
-        for (int i = 0; i < paramIdx.length; i++) {
-            idx = paramIdx[i];
+        for (int i = 0; i < paramIndexes.length; i++) {
+            idx = paramIndexes[i];
             wordIndex = idx / WORD_LENGTH;
             indexInWord = idx % WORD_LENGTH;
             codingWords[wordIndex] = codingWords[wordIndex] | (1L << indexInWord);
@@ -39,9 +42,13 @@ public class BitwiseEncoder {
     }
 
     public boolean forAllAttributes(long[] input, int[] paramIdx) {
-        long[] expected = encode(paramIdx);
+        long[] encodedParamIndexes = encode(paramIdx);
+        return forAllAttributes(input, encodedParamIndexes);
+    }
+
+    public boolean forAllAttributes(long[] input, long[] encodedParamIndexes) {
         for (int i = 0; i < input.length; i++) {
-            if ((input[i] & expected[i]) != expected[i]) {
+            if ((input[i] & encodedParamIndexes[i]) != encodedParamIndexes[i]) {
                 return false;
             }
         }
@@ -61,11 +68,5 @@ public class BitwiseEncoder {
             }
         }
         return true;
-    }
-
-    private long[] initializeEmpty() {
-        long[] arr = new long[wordsNeeded];
-        Arrays.fill(arr, 0L);
-        return arr;
     }
 }

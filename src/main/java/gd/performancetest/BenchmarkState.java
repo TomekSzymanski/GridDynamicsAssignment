@@ -1,5 +1,8 @@
-package gd;
+package gd.performancetest;
 
+import gd.BitwiseEncoder;
+import gd.Person;
+import gd.QueryEvaluator;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 
