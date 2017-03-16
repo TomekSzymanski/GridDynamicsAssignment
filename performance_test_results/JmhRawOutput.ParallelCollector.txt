@@ -1,0 +1,560 @@
+[info] Loading project definition from C:\workspace\GridDynamicsAssignment\project
+[info] Set current project to GridDynamicsAssignment (in build file:/C:/workspace/GridDynamicsAssignment/)
+> 
+> jmh:run -i 10 -wi 10 -f1 -t1 -jvmArgs="-Xmx10g"
+Processing 24 classes from C:\workspace\GridDynamicsAssignment\target\classes with "reflection" generator
+Writing out Java source to C:\workspace\GridDynamicsAssignment\target\src_managed\jmh and resources to C:\workspace\GridDynamicsAssignment\target\resource_managed\jmh
+[info] Compiling 73 Java sources to C:\workspace\GridDynamicsAssignment\target\classes...
+[info] Running org.openjdk.jmh.Main -i 10 -wi 10 -f1 -t1 -jvmArgs="-Xmx10g"
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd1000Attributes
+[info] 
+[info] # Run progress: 0.00% complete, ETA 00:04:20
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 288.502 ms/op
+[info] # Warmup Iteration   2: 182.377 ms/op
+[info] # Warmup Iteration   3: 189.899 ms/op
+[info] # Warmup Iteration   4: 264.932 ms/op
+[info] # Warmup Iteration   5: 188.452 ms/op
+[info] # Warmup Iteration   6: 190.140 ms/op
+[info] # Warmup Iteration   7: 286.827 ms/op
+[info] # Warmup Iteration   8: 191.910 ms/op
+[info] # Warmup Iteration   9: 188.087 ms/op
+[info] # Warmup Iteration  10: 241.509 ms/op
+[info] Iteration   1: 192.497 ms/op
+[info] Iteration   2: 180.915 ms/op
+[info] Iteration   3: 244.916 ms/op
+[info] Iteration   4: 183.160 ms/op
+[info] Iteration   5: 192.970 ms/op
+[info] Iteration   6: 192.624 ms/op
+[info] Iteration   7: 234.944 ms/op
+[info] Iteration   8: 180.676 ms/op
+[info] Iteration   9: 196.460 ms/op
+[info] Iteration  10: 272.298 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd1000Attributes":
+[info]   207.146 ±(99.9%) 48.203 ms/op [Average]
+[info]   (min, avg, max) = (180.676, 207.146, 272.298), stdev = 31.883
+[info]   CI (99.9%): [158.943, 255.349] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd100Attributes
+[info] 
+[info] # Run progress: 7.69% complete, ETA 00:12:02
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 171.556 ms/op
+[info] # Warmup Iteration   2: 391.164 ms/op
+[info] # Warmup Iteration   3: 256.267 ms/op
+[info] # Warmup Iteration   4: 172.905 ms/op
+[info] # Warmup Iteration   5: 359.332 ms/op
+[info] # Warmup Iteration   6: 145.651 ms/op
+[info] # Warmup Iteration   7: 310.140 ms/op
+[info] # Warmup Iteration   8: 183.951 ms/op
+[info] # Warmup Iteration   9: 271.011 ms/op
+[info] # Warmup Iteration  10: 157.209 ms/op
+[info] Iteration   1: 315.871 ms/op
+[info] Iteration   2: 166.158 ms/op
+[info] Iteration   3: 250.701 ms/op
+[info] Iteration   4: 168.289 ms/op
+[info] Iteration   5: 167.767 ms/op
+[info] Iteration   6: 381.876 ms/op
+[info] Iteration   7: 162.325 ms/op
+[info] Iteration   8: 248.888 ms/op
+[info] Iteration   9: 152.199 ms/op
+[info] Iteration  10: 149.700 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd100Attributes":
+[info]   216.377 ±(99.9%) 121.585 ms/op [Average]
+[info]   (min, avg, max) = (149.700, 216.377, 381.876), stdev = 80.421
+[info]   CI (99.9%): [94.793, 337.962] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd1500Attributes
+[info] 
+[info] # Run progress: 15.38% complete, ETA 00:09:16
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 394.559 ms/op
+[info] # Warmup Iteration   2: 219.235 ms/op
+[info] # Warmup Iteration   3: 206.589 ms/op
+[info] # Warmup Iteration   4: 215.797 ms/op
+[info] # Warmup Iteration   5: 221.362 ms/op
+[info] # Warmup Iteration   6: 1868.087 ms/op
+[info] # Warmup Iteration   7: 223.944 ms/op
+[info] # Warmup Iteration   8: 233.578 ms/op
+[info] # Warmup Iteration   9: 217.003 ms/op
+[info] # Warmup Iteration  10: 211.997 ms/op
+[info] Iteration   1: 222.017 ms/op
+[info] Iteration   2: 219.013 ms/op
+[info] Iteration   3: 210.301 ms/op
+[info] Iteration   4: 218.477 ms/op
+[info] Iteration   5: 220.299 ms/op
+[info] Iteration   6: 228.544 ms/op
+[info] Iteration   7: 228.178 ms/op
+[info] Iteration   8: 222.418 ms/op
+[info] Iteration   9: 220.294 ms/op
+[info] Iteration  10: 227.486 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd1500Attributes":
+[info]   221.703 ±(99.9%) 8.348 ms/op [Average]
+[info]   (min, avg, max) = (210.301, 221.703, 228.544), stdev = 5.521
+[info]   CI (99.9%): [213.355, 230.050] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd2000Attributes
+[info] 
+[info] # Run progress: 23.08% complete, ETA 00:09:48
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 274.110 ms/op
+[info] # Warmup Iteration   2: 232.778 ms/op
+[info] # Warmup Iteration   3: 234.843 ms/op
+[info] # Warmup Iteration   4: 270.745 ms/op
+[info] # Warmup Iteration   5: 231.337 ms/op
+[info] # Warmup Iteration   6: 248.722 ms/op
+[info] # Warmup Iteration   7: 262.126 ms/op
+[info] # Warmup Iteration   8: 243.298 ms/op
+[info] # Warmup Iteration   9: 239.200 ms/op
+[info] # Warmup Iteration  10: 263.435 ms/op
+[info] Iteration   1: 236.675 ms/op
+[info] Iteration   2: 244.523 ms/op
+[info] Iteration   3: 254.851 ms/op
+[info] Iteration   4: 241.780 ms/op
+[info] Iteration   5: 241.026 ms/op
+[info] Iteration   6: 270.350 ms/op
+[info] Iteration   7: 246.062 ms/op
+[info] Iteration   8: 235.898 ms/op
+[info] Iteration   9: 257.643 ms/op
+[info] Iteration  10: 262.733 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd2000Attributes":
+[info]   249.154 ±(99.9%) 17.610 ms/op [Average]
+[info]   (min, avg, max) = (235.898, 249.154, 270.350), stdev = 11.648
+[info]   CI (99.9%): [231.544, 266.764] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd200Attributes
+[info] 
+[info] # Run progress: 30.77% complete, ETA 00:09:52
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 306.450 ms/op
+[info] # Warmup Iteration   2: 169.154 ms/op
+[info] # Warmup Iteration   3: 244.763 ms/op
+[info] # Warmup Iteration   4: 143.878 ms/op
+[info] # Warmup Iteration   5: 208.859 ms/op
+[info] # Warmup Iteration   6: 155.221 ms/op
+[info] # Warmup Iteration   7: 171.524 ms/op
+[info] # Warmup Iteration   8: 229.354 ms/op
+[info] # Warmup Iteration   9: 176.513 ms/op
+[info] # Warmup Iteration  10: 235.668 ms/op
+[info] Iteration   1: 170.752 ms/op
+[info] Iteration   2: 158.219 ms/op
+[info] Iteration   3: 223.912 ms/op
+[info] Iteration   4: 143.466 ms/op
+[info] Iteration   5: 218.934 ms/op
+[info] Iteration   6: 161.700 ms/op
+[info] Iteration   7: 144.450 ms/op
+[info] Iteration   8: 250.358 ms/op
+[info] Iteration   9: 174.223 ms/op
+[info] Iteration  10: 167.047 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd200Attributes":
+[info]   181.306 ±(99.9%) 55.370 ms/op [Average]
+[info]   (min, avg, max) = (143.466, 181.306, 250.358), stdev = 36.624
+[info]   CI (99.9%): [125.936, 236.676] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd500Attributes
+[info] 
+[info] # Run progress: 38.46% complete, ETA 00:08:05
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 169.511 ms/op
+[info] # Warmup Iteration   2: 1211.314 ms/op
+[info] # Warmup Iteration   3: 184.630 ms/op
+[info] # Warmup Iteration   4: 166.135 ms/op
+[info] # Warmup Iteration   5: 510.520 ms/op
+[info] # Warmup Iteration   6: 192.657 ms/op
+[info] # Warmup Iteration   7: 160.981 ms/op
+[info] # Warmup Iteration   8: 511.383 ms/op
+[info] # Warmup Iteration   9: 185.367 ms/op
+[info] # Warmup Iteration  10: 166.099 ms/op
+[info] Iteration   1: 483.076 ms/op
+[info] Iteration   2: 168.594 ms/op
+[info] Iteration   3: 165.113 ms/op
+[info] Iteration   4: 721.036 ms/op
+[info] Iteration   5: 153.291 ms/op
+[info] Iteration   6: 175.116 ms/op
+[info] Iteration   7: 498.336 ms/op
+[info] Iteration   8: 167.365 ms/op
+[info] Iteration   9: 176.417 ms/op
+[info] Iteration  10: 515.046 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd500Attributes":
+[info]   322.339 ±(99.9%) 317.460 ms/op [Average]
+[info]   (min, avg, max) = (153.291, 322.339, 721.036), stdev = 209.980
+[info]   CI (99.9%): [4.879, 639.799] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd10mRecords
+[info] 
+[info] # Run progress: 46.15% complete, ETA 00:06:49
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 317.526 ms/op
+[info] # Warmup Iteration   2: 75.118 ms/op
+[info] # Warmup Iteration   3: 82.878 ms/op
+[info] # Warmup Iteration   4: 91.698 ms/op
+[info] # Warmup Iteration   5: 81.524 ms/op
+[info] # Warmup Iteration   6: 89.222 ms/op
+[info] # Warmup Iteration   7: 85.736 ms/op
+[info] # Warmup Iteration   8: 88.317 ms/op
+[info] # Warmup Iteration   9: 85.096 ms/op
+[info] # Warmup Iteration  10: 83.921 ms/op
+[info] Iteration   1: 84.765 ms/op
+[info] Iteration   2: 89.598 ms/op
+[info] Iteration   3: 82.996 ms/op
+[info] Iteration   4: 87.227 ms/op
+[info] Iteration   5: 84.385 ms/op
+[info] Iteration   6: 89.803 ms/op
+[info] Iteration   7: 79.430 ms/op
+[info] Iteration   8: 83.926 ms/op
+[info] Iteration   9: 86.563 ms/op
+[info] Iteration  10: 85.836 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd10mRecords":
+[info]   85.453 ±(99.9%) 4.697 ms/op [Average]
+[info]   (min, avg, max) = (79.430, 85.453, 89.803), stdev = 3.107
+[info]   CI (99.9%): [80.755, 90.150] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd15mRecords
+[info] 
+[info] # Run progress: 53.85% complete, ETA 00:05:29
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 774.761 ms/op
+[info] # Warmup Iteration   2: 126.419 ms/op
+[info] # Warmup Iteration   3: 132.781 ms/op
+[info] # Warmup Iteration   4: 125.280 ms/op
+[info] # Warmup Iteration   5: 125.981 ms/op
+[info] # Warmup Iteration   6: 131.896 ms/op
+[info] # Warmup Iteration   7: 130.048 ms/op
+[info] # Warmup Iteration   8: 128.756 ms/op
+[info] # Warmup Iteration   9: 122.570 ms/op
+[info] # Warmup Iteration  10: 121.691 ms/op
+[info] Iteration   1: 133.160 ms/op
+[info] Iteration   2: 130.868 ms/op
+[info] Iteration   3: 130.394 ms/op
+[info] Iteration   4: 126.337 ms/op
+[info] Iteration   5: 136.458 ms/op
+[info] Iteration   6: 121.992 ms/op
+[info] Iteration   7: 121.548 ms/op
+[info] Iteration   8: 131.800 ms/op
+[info] Iteration   9: 126.364 ms/op
+[info] Iteration  10: 148.369 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd15mRecords":
+[info]   130.729 ±(99.9%) 11.821 ms/op [Average]
+[info]   (min, avg, max) = (121.548, 130.729, 148.369), stdev = 7.819
+[info]   CI (99.9%): [118.909, 142.550] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd1mRecords
+[info] 
+[info] # Run progress: 61.54% complete, ETA 00:04:24
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 9.697 ms/op
+[info] # Warmup Iteration   2: 8.750 ms/op
+[info] # Warmup Iteration   3: 8.482 ms/op
+[info] # Warmup Iteration   4: 8.450 ms/op
+[info] # Warmup Iteration   5: 9.892 ms/op
+[info] # Warmup Iteration   6: 8.281 ms/op
+[info] # Warmup Iteration   7: 8.411 ms/op
+[info] # Warmup Iteration   8: 8.008 ms/op
+[info] # Warmup Iteration   9: 8.203 ms/op
+[info] # Warmup Iteration  10: 8.256 ms/op
+[info] Iteration   1: 8.274 ms/op
+[info] Iteration   2: 8.111 ms/op
+[info] Iteration   3: 8.420 ms/op
+[info] Iteration   4: 8.351 ms/op
+[info] Iteration   5: 8.560 ms/op
+[info] Iteration   6: 8.317 ms/op
+[info] Iteration   7: 8.352 ms/op
+[info] Iteration   8: 8.614 ms/op
+[info] Iteration   9: 8.394 ms/op
+[info] Iteration  10: 8.798 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd1mRecords":
+[info]   8.419 ±(99.9%) 0.293 ms/op [Average]
+[info]   (min, avg, max) = (8.111, 8.419, 8.798), stdev = 0.194
+[info]   CI (99.9%): [8.126, 8.712] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecords
+[info] 
+[info] # Run progress: 69.23% complete, ETA 00:03:17
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 173.505 ms/op
+[info] # Warmup Iteration   2: 1218.675 ms/op
+[info] # Warmup Iteration   3: 152.158 ms/op
+[info] # Warmup Iteration   4: 167.447 ms/op
+[info] # Warmup Iteration   5: 507.185 ms/op
+[info] # Warmup Iteration   6: 177.338 ms/op
+[info] # Warmup Iteration   7: 149.276 ms/op
+[info] # Warmup Iteration   8: 407.394 ms/op
+[info] # Warmup Iteration   9: 167.871 ms/op
+[info] # Warmup Iteration  10: 180.816 ms/op
+[info] Iteration   1: 411.160 ms/op
+[info] Iteration   2: 170.147 ms/op
+[info] Iteration   3: 177.236 ms/op
+[info] Iteration   4: 400.984 ms/op
+[info] Iteration   5: 162.384 ms/op
+[info] Iteration   6: 163.330 ms/op
+[info] Iteration   7: 648.125 ms/op
+[info] Iteration   8: 169.608 ms/op
+[info] Iteration   9: 177.778 ms/op
+[info] Iteration  10: 492.785 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecords":
+[info]   297.354 ±(99.9%) 267.774 ms/op [Average]
+[info]   (min, avg, max) = (162.384, 297.354, 648.125), stdev = 177.116
+[info]   CI (99.9%): [29.579, 565.128] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd35mRecords
+[info] 
+[info] # Run progress: 76.92% complete, ETA 00:02:27
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 416.415 ms/op
+[info] # Warmup Iteration   2: 1887.222 ms/op
+[info] # Warmup Iteration   3: 275.486 ms/op
+[info] # Warmup Iteration   4: 291.939 ms/op
+[info] # Warmup Iteration   5: 279.140 ms/op
+[info] # Warmup Iteration   6: 253.761 ms/op
+[info] # Warmup Iteration   7: 293.280 ms/op
+[info] # Warmup Iteration   8: 299.106 ms/op
+[info] # Warmup Iteration   9: 277.716 ms/op
+[info] # Warmup Iteration  10: 282.489 ms/op
+[info] Iteration   1: 291.747 ms/op
+[info] Iteration   2: 266.127 ms/op
+[info] Iteration   3: 300.013 ms/op
+[info] Iteration   4: 293.804 ms/op
+[info] Iteration   5: 258.194 ms/op
+[info] Iteration   6: 281.401 ms/op
+[info] Iteration   7: 298.285 ms/op
+[info] Iteration   8: 280.893 ms/op
+[info] Iteration   9: 264.899 ms/op
+[info] Iteration  10: 293.342 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd35mRecords":
+[info]   282.870 ±(99.9%) 22.861 ms/op [Average]
+[info]   (min, avg, max) = (258.194, 282.870, 300.013), stdev = 15.121
+[info]   CI (99.9%): [260.010, 305.731] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd50mRecords
+[info] 
+[info] # Run progress: 84.62% complete, ETA 00:01:43
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 9862.493 ms/op
+[info] # Warmup Iteration   2: 365.478 ms/op
+[info] # Warmup Iteration   3: 414.930 ms/op
+[info] # Warmup Iteration   4: 422.880 ms/op
+[info] # Warmup Iteration   5: 471.358 ms/op
+[info] # Warmup Iteration   6: 407.041 ms/op
+[info] # Warmup Iteration   7: 432.131 ms/op
+[info] # Warmup Iteration   8: 384.632 ms/op
+[info] # Warmup Iteration   9: 429.707 ms/op
+[info] # Warmup Iteration  10: 432.046 ms/op
+[info] Iteration   1: 610.606 ms/op
+[info] Iteration   2: 429.917 ms/op
+[info] Iteration   3: 519.938 ms/op
+[info] Iteration   4: 485.086 ms/op
+[info] Iteration   5: 454.952 ms/op
+[info] Iteration   6: 400.510 ms/op
+[info] Iteration   7: 417.422 ms/op
+[info] Iteration   8: 402.859 ms/op
+[info] Iteration   9: 431.348 ms/op
+[info] Iteration  10: 426.052 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd50mRecords":
+[info]   457.869 ±(99.9%) 98.728 ms/op [Average]
+[info]   (min, avg, max) = (400.510, 457.869, 610.606), stdev = 65.302
+[info]   CI (99.9%): [359.141, 556.597] (assumes normal distribution)
+[info] 
+[info] 
+[info] # JMH 1.17.5 (released 20 days ago)
+[info] # VM version: JDK 1.8.0_112, VM 25.112-b15
+[info] # VM invoker: c:\java\jdk1.8.0_112\jre\bin\java.exe
+[info] # VM options: -Xmx10g
+[info] # Warmup: 10 iterations, 1 s each
+[info] # Measurement: 10 iterations, 1 s each
+[info] # Timeout: 10 min per iteration
+[info] # Threads: 1 thread, will synchronize iterations
+[info] # Benchmark mode: Average time, time/op
+[info] # Benchmark: gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd5mRecords
+[info] 
+[info] # Run progress: 92.31% complete, ETA 00:00:55
+[info] # Fork: 1 of 1
+[info] # Warmup Iteration   1: 121.037 ms/op
+[info] # Warmup Iteration   2: 42.783 ms/op
+[info] # Warmup Iteration   3: 42.122 ms/op
+[info] # Warmup Iteration   4: 43.113 ms/op
+[info] # Warmup Iteration   5: 41.413 ms/op
+[info] # Warmup Iteration   6: 43.223 ms/op
+[info] # Warmup Iteration   7: 44.528 ms/op
+[info] # Warmup Iteration   8: 44.553 ms/op
+[info] # Warmup Iteration   9: 42.477 ms/op
+[info] # Warmup Iteration  10: 40.746 ms/op
+[info] Iteration   1: 41.934 ms/op
+[info] Iteration   2: 42.763 ms/op
+[info] Iteration   3: 41.416 ms/op
+[info] Iteration   4: 42.241 ms/op
+[info] Iteration   5: 43.052 ms/op
+[info] Iteration   6: 40.430 ms/op
+[info] Iteration   7: 43.257 ms/op
+[info] Iteration   8: 39.576 ms/op
+[info] Iteration   9: 39.789 ms/op
+[info] Iteration  10: 42.167 ms/op
+[info] 
+[info] 
+[info] Result "gd.performancetest.QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd5mRecords":
+[info]   41.662 ±(99.9%) 2.003 ms/op [Average]
+[info]   (min, avg, max) = (39.576, 41.662, 43.257), stdev = 1.325
+[info]   CI (99.9%): [39.660, 43.665] (assumes normal distribution)
+[info] 
+[info] 
+[info] # Run complete. Total time: 00:11:38
+[info] 
+[info] Benchmark                                                                                                             Mode  Cnt    Score     Error  Units
+[info] QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd1000Attributes  avgt   10  207.146 ±  48.203  ms/op
+[info] QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd100Attributes   avgt   10  216.377 ± 121.585  ms/op
+[info] QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd1500Attributes  avgt   10  221.703 ±   8.348  ms/op
+[info] QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd2000Attributes  avgt   10  249.154 ±  17.610  ms/op
+[info] QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd200Attributes   avgt   10  181.306 ±  55.370  ms/op
+[info] QueryEvaluatorPerformanceTestByAttributesCount.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecordsAnd500Attributes   avgt   10  322.339 ± 317.460  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd10mRecords                     avgt   10   85.453 ±   4.697  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd15mRecords                     avgt   10  130.729 ±  11.821  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd1mRecords                      avgt   10    8.419 ±   0.293  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd20mRecords                     avgt   10  297.354 ± 267.774  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd35mRecords                     avgt   10  282.870 ±  22.861  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd50mRecords                     avgt   10  457.869 ±  98.728  ms/op
+[info] QueryEvaluatorPerformanceTestByInputTaskSize.verySmallFilterAttrsLimitedGroupByAttrsAnd5mRecords                      avgt   10   41.662 ±   2.003  ms/op
+[success] Total time: 702 s, completed Mar 16, 2017 1:01:38 AM
+> 
+> exit
