@@ -1,72 +1,19 @@
 package gd;
 
-import com.google.common.util.concurrent.AtomicLongMap;
-
-import java.util.IdentityHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class QueryEvaluator {
+public interface QueryEvaluator {
 
-    private final List<Person> input;
-    private final BitwiseEncoder encoder;
+    /**
+     * Finds ids of all people that have all provided attributes active
+     */
+    List<Long> findAllAttributesMatch(List<Attribute> filterAttributes);
 
-    public QueryEvaluator(List<Person> input, BitwiseEncoder encoder) {
-        this.input = input;
-        this.encoder = encoder;
-    }
-
-    public List<Long> findAllAttributesMatch(List<Attributes> filterAttributes) {
-        return findAllMatching(filterAttributes).map(p -> p.id).collect(Collectors.toList());
-    }
-
-    public GroupByRollupResult findAllAttributesMatch(List<Attributes> filterAttributes, List<Attributes> groupByAttributes) {
-        if (groupByAttributes.isEmpty()) {
-            throw new IllegalArgumentException("groupByAttributes list must be non empty");
-        }
-        AtomicLongMap<Attributes> groupCounts = AtomicLongMap.create();
-        AtomicLong overallCount = new AtomicLong();
-        AtomicLong noGrpAttrsCount = new AtomicLong();
-        Stream<Person> allMatching = findAllMatching(filterAttributes);
-        Map<Attributes, long[]> encodedAttributes = createEncodedAttributes(groupByAttributes);
-        allMatching.forEach(person -> {
-            overallCount.incrementAndGet();
-            boolean[] anyGrpAttrMatched = {false};
-            groupByAttributes.forEach(attr -> {
-                if (personContainsAttribute(attr, person, encodedAttributes)) {
-                    anyGrpAttrMatched[0] = true;
-                    groupCounts.incrementAndGet(attr);
-                }
-            });
-            if (!anyGrpAttrMatched[0]) {
-                noGrpAttrsCount.incrementAndGet();
-            }
-        });
-        return new GroupByRollupResult(overallCount.longValue(), noGrpAttrsCount.longValue(), groupCounts.asMap());
-    }
-
-    private Map<Attributes, long[]> createEncodedAttributes(List<Attributes> attributes) {
-        Map<Attributes, long[]> encodedAttributes = new IdentityHashMap<>(attributes.size());
-        attributes.forEach(attr -> encodedAttributes.put(attr, encoder.encode(attr.ordinal())));
-        return encodedAttributes;
-    }
-
-    private boolean personContainsAttribute(Attributes grpAttr, Person person, Map<Attributes, long[]> encodedAttributes) {
-        long[] encodedParamIndexes = encodedAttributes.get(grpAttr);
-        return (encoder.forAllAttributes(person.attributes, encodedParamIndexes));
-    }
-
-    private Stream<Person> findAllMatching(List<Attributes> filterAttributes) {
-        int[] attribIndexes = new int[filterAttributes.size()];
-        int attributeIdx;
-        for (int i = 0; i < filterAttributes.size(); i++) {
-            attributeIdx = filterAttributes.get(i).ordinal();
-            attribIndexes[i] = attributeIdx;
-        }
-        long[] encodedParamIndexes = encoder.encode(attribIndexes);
-        return input.parallelStream().filter(person -> encoder.forAllAttributes(person.attributes, encodedParamIndexes));
-    }
+    /**
+     * Returns group by rollup result for query with given filter attributes and group by attributes
+     * @param filterAttributes
+     * @param groupByAttributes list of attributes to group by. Every person must have at least one group by attribute active to be included in GroupByRollupResult.perAttributeCounts, otherwise it is included in noGrpAttrsRecordsCount. See unit tests.
+     * @return
+     */
+    GroupByRollupResult findAllAttributesMatch(List<Attribute> filterAttributes, List<Attribute> groupByAttributes);
 }

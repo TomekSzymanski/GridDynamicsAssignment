@@ -1,16 +1,19 @@
 package gd;
 
+import lombok.Value;
+
 import java.util.Map;
 
+@Value
 public class GroupByRollupResult {
-    public final long overallCount;
-    public final long noGrpAttrsCount;
-    public final Map<Attributes, Long> perAttributeCounts;
 
-    public GroupByRollupResult(long overallCount, long noGrpAttrsCount, Map<Attributes, Long> perAttributeCounts) {
-        this.overallCount = overallCount;
-        this.noGrpAttrsCount = noGrpAttrsCount;
-        this.perAttributeCounts = perAttributeCounts;
-    }
+    public final long overallCount;
+
+    /** Count of records that did not have any grouping attribute set.
+     * For example records that passed the filtering but then did not have any grouping attribute set to true.
+     */
+    public final long noGrpAttrsRecordsCount;
+
+    public final Map<Attribute, Long> perAttributeCounts;
 }
 

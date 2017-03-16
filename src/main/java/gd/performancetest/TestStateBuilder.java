@@ -1,8 +1,8 @@
 package gd.performancetest;
 
-import gd.Attributes;
+import gd.Attribute;
 import gd.BitwiseEncoder;
-import gd.Person;
+import gd.EncodedPerson;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,8 +14,8 @@ class TestStateBuilder {
     private int inputTaskSize;
     private int maxAttributes;
 
-    private List<Attributes> filterAttributes = Collections.emptyList();
-    private List<Attributes> groupByAttributes = Collections.emptyList();
+    private List<Attribute> filterAttributes = Collections.emptyList();
+    private List<Attribute> groupByAttributes = Collections.emptyList();
 
     TestStateBuilder inputTaskSizeMillions(int inputTaskSizeMillions) {
         this.inputTaskSize = inputTaskSizeMillions * 1000000;
@@ -27,12 +27,12 @@ class TestStateBuilder {
         return this;
     }
 
-    TestStateBuilder filterAttributes(List<Attributes> filterAttributes) {
+    TestStateBuilder filterAttributes(List<Attribute> filterAttributes) {
         this.filterAttributes = filterAttributes;
         return this;
     }
 
-    TestStateBuilder groupByAttributes(List<Attributes> groupByAttributes) {
+    TestStateBuilder groupByAttributes(List<Attribute> groupByAttributes) {
         this.groupByAttributes = groupByAttributes;
         return this;
     }
@@ -41,7 +41,7 @@ class TestStateBuilder {
         assertMandatoryAttributesSet();
         BitwiseEncoder encoder = new BitwiseEncoder(maxAttributes);
         TestPersonFactory testPersonFactory = new TestPersonFactory(encoder, maxAttributes);
-        List<Person> input = IntStream
+        List<EncodedPerson> input = IntStream
                 .range(0, inputTaskSize)
                 .mapToObj(id -> {
                     int focusAttributesMaxIndex = Math.min(10, maxAttributes / 2);

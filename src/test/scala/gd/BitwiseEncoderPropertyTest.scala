@@ -10,7 +10,7 @@ class BitwiseEncoderPropertyTest extends FlatSpec with Matchers with GivenWhenTh
   private val encoder = new BitwiseEncoder(maxAttributes)
 
   "encoded value" must "must contain all values than were passed to encoding" in {
-    Given("lists of random lenght, up to maxAttributes, with random attributes indexes")
+    Given("lists of random length, up to maxAttributes, with random attributes indexes")
     val attribIndexesGen = for {
       numAttrs <- Gen.choose(1, maxAttributes -1)
       list <- Gen.nonEmptyListOf(numAttrs)

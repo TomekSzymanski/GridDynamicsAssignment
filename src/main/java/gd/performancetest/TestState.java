@@ -1,16 +1,16 @@
 package gd.performancetest;
 
-import gd.Attributes;
+import gd.Attribute;
 import gd.BitwiseEncoder;
-import gd.Person;
+import gd.EncodedPerson;
 import lombok.Value;
 
 import java.util.List;
 
 @Value
 public class TestState {
-    final List<Person> input;
+    final List<EncodedPerson> input;
     final BitwiseEncoder encoder;
-    final List<Attributes> filterAttributes;
-    final List<Attributes> groupByAttributes;
+    final List<Attribute> filterAttributes;
+    final List<Attribute> groupByAttributes;
 }
