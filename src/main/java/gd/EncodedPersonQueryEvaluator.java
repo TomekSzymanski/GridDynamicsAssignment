@@ -2,7 +2,7 @@ package gd;
 
 import com.google.common.util.concurrent.AtomicLongMap;
 
-import java.util.IdentityHashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -54,7 +54,7 @@ public class EncodedPersonQueryEvaluator implements QueryEvaluator {
     }
 
     private Map<Attribute, long[]> createEncodedAttributes(List<Attribute> attributes) {
-        Map<Attribute, long[]> encodedAttributes = new IdentityHashMap<>(attributes.size());
+        Map<Attribute, long[]> encodedAttributes = new EnumMap<>(Attribute.class);
         attributes.forEach(attr -> encodedAttributes.put(attr, encoder.encode(attr.ordinal())));
         return encodedAttributes;
     }
